@@ -1,0 +1,104 @@
+/*
+ * Copyright 2019 Roragok. All Rights Reserved.
+ */
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion toolVersions.compileSdkVersion
+
+    defaultConfig {
+        versionCode 1
+        versionName "1.0.0"
+
+        multiDexEnabled toolVersions.multidex
+        minSdkVersion toolVersions.minSdkVersion
+        targetSdkVersion toolVersions.targetSdkVersion
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled false
+        }
+
+        qa {
+            debuggable false
+            minifyEnabled false
+        }
+
+        debug {
+            debuggable true
+            minifyEnabled false
+            testCoverageEnabled toolVersions.testCoverageEnabled
+        }
+    }
+
+    lintOptions {
+        xmlReport lintOpts.xmlReport
+        abortOnError lintOpts.abortOnError
+        disable lintOpts.disable
+    }
+
+    compileOptions {
+        sourceCompatibility compileVersions.sourceCompatibility
+        targetCompatibility compileVersions.targetCompatibility
+    }
+
+    packagingOptions {
+        packagingExcludes.forEach {
+            exclude it
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    //
+    // kotlin
+    //
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$toolVersions.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$toolVersions.kotlin"
+
+    //
+    // junit
+    //
+
+    testImplementation "junit:junit:$libVersions.junit"
+
+    //
+    // mockk
+    //
+
+    testImplementation "io.mockk:mockk:$libVersions.mockk"
+
+    //
+    // modules
+    //
+
+    implementation project(':NAMafiA.Extensions')
+
+    //
+    // timber
+    //
+
+    implementation "com.jakewharton.timber:timber:$libVersions.timber"
+
+    //
+    // truth
+    //
+
+    testImplementation "com.google.truth:truth:$libVersions.truth"
+}

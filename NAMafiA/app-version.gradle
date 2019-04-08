@@ -1,0 +1,15 @@
+/*
+ * Copyright 2019 Roragok. All Rights Reserved.
+ */
+
+// In order to get TeamCity to detect changes, and to ensure the version was updated, TeamCity is configured to look for changes in
+// this file to determine if a build should be triggered
+
+allprojects {
+    project.ext {
+        version = [
+                versionName: "1.0.0",
+                versionCode: 17
+        ]
+    }
+}

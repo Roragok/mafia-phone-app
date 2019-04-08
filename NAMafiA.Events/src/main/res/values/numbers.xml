@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2019 Roragok. All Rights Reserved.
+  -->
+
+<resources>
+    <integer name="slide_duration">300</integer>
+    <integer name="slide_duration_longer">500</integer>
+</resources>
