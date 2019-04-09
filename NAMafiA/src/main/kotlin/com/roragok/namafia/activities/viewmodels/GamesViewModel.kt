@@ -39,7 +39,7 @@ class GamesViewModel @Inject constructor(
                 Timber.d("fetched games: ${games.size}")
 
                 allGames.clear()
-                allGames += games.map { GameModel(it) }
+                allGames += games.map { GameModel(it) }.sorted()
 
                 this.games.value = allGames
             }, {

@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
   ~ Copyright 2019 Roragok. All Rights Reserved.
   -->
 
@@ -6,7 +8,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    
     <color name="controlPressed">#0e0e12</color>
     <color name="textColorHighlight">#5a5960</color>
+    <color name="inactive">#ccc</color>
 </resources>
