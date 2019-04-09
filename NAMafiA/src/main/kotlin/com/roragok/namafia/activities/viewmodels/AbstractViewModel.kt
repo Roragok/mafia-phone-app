@@ -7,10 +7,10 @@ package com.roragok.namafia.activities.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dds.roragok.namafia.events.Event
-import com.dds.roragok.namafia.events.EventFactory
-import com.dds.roragok.namafia.events.messages.StringContent
 import com.roragok.namafia.R
+import com.roragok.namafia.events.Event
+import com.roragok.namafia.events.EventFactory
+import com.roragok.namafia.events.messages.StringContent
 import io.reactivex.disposables.CompositeDisposable
 import java.io.IOException
 import java.net.SocketTimeoutException

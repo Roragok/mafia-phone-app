@@ -4,7 +4,7 @@
 
 package com.roragok.namafia.activities.adapters.recyclerviews.models
 
-import com.dds.roragok.namafia.api.entities.Game
+import com.roragok.namafia.api.entities.Game
 import timber.log.Timber
 
 class GameModel(game: Game) : Searchable {

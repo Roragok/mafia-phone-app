@@ -54,16 +54,16 @@ android {
             shrinkResources true
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            proguardFiles fileTree(dir: '../config/proguard', include: ['*.pro']).asList().toArray()
+            proguardFiles fileTree(dir: 'config/proguard', include: ['*.pro']).asList().toArray()
 
             signingConfig signingConfigs.release
 
             // fabric properties
             ext.betaDistributionReleaseNotesFilePath = file('ReleaseNotes.txt')
-            ext.betaDistributionGroupAliases = '' // TODO need a production distribution list at some point
+            ext.betaDistributionGroupAliases = 'namafia' // TODO need a production distribution list at some point
 
             buildConfigField 'boolean', 'FABRIC_ENABLED', 'true'
-            buildConfigField 'String', 'API_SERVER', 'com.dds.roragok.namafia.api.Server.PRODUCTION'
+            buildConfigField 'String', 'API_SERVER', 'com.roragok.namafia.api.Server.PRODUCTION'
 
             matchingFallbacks["release"]
         }
@@ -75,16 +75,16 @@ android {
             shrinkResources true
 
             proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
-            proguardFiles fileTree(dir: '../config/proguard', include: ['*.pro']).asList().toArray()
+            proguardFiles fileTree(dir: 'config/proguard', include: ['*.pro']).asList().toArray()
 
             signingConfig signingConfigs.release
 
             // fabric properties
             ext.betaDistributionReleaseNotesFilePath = file('ReleaseNotes.txt')
-            ext.betaDistributionGroupAliases = ''
+            ext.betaDistributionGroupAliases = 'namafia'
 
             buildConfigField 'boolean', 'FABRIC_ENABLED', 'true'
-            buildConfigField 'String', 'API_SERVER', 'com.dds.roragok.namafia.api.Server.QA'
+            buildConfigField 'String', 'API_SERVER', 'com.roragok.namafia.api.Server.QA'
 
             matchingFallbacks["release"]
         }
@@ -102,7 +102,7 @@ android {
             ext.enableCrashlytics = false
 
             buildConfigField 'boolean', 'FABRIC_ENABLED', 'false'
-            buildConfigField 'String', 'API_SERVER', 'com.dds.roragok.namafia.api.Server.DEV'
+            buildConfigField 'String', 'API_SERVER', 'com.roragok.namafia.api.Server.DEV'
 
             matchingFallbacks["debug"]
         }

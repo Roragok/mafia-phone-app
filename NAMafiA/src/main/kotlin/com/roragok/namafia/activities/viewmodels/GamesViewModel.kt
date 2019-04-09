@@ -6,12 +6,12 @@ package com.roragok.namafia.activities.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dds.roragok.namafia.api.retrofit.NamfiaService
-import com.dds.roragok.namafia.events.EventFactory
-import com.dds.roragok.namafia.events.messages.StringContent
-import com.dds.roragok.namafia.extensions.addTo
 import com.roragok.namafia.R
 import com.roragok.namafia.activities.adapters.recyclerviews.models.GameModel
+import com.roragok.namafia.api.retrofit.NamafiaService
+import com.roragok.namafia.events.EventFactory
+import com.roragok.namafia.events.messages.StringContent
+import com.roragok.namafia.extensions.addTo
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 class GamesViewModel @Inject constructor(
     eventFactory: EventFactory,
-    private val namfiaService: NamfiaService
+    private val namfiaService: NamafiaService
 ) : AbstractViewModel(eventFactory) {
 
     private val allGames = mutableListOf<GameModel>()

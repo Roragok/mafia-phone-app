@@ -8,10 +8,10 @@ import android.content.Context
 import android.os.Build
 import android.os.Build.VERSION
 import android.os.storage.StorageManager
-import com.dds.roragok.namafia.api.okhttp3.interceptors.DefaultHeadersInterceptor
-import com.dds.roragok.namafia.api.okhttp3.interceptors.LoggingInterceptor
-import com.dds.roragok.namafia.api.retrofit.NamfiaService
 import com.roragok.namafia.BuildConfig
+import com.roragok.namafia.api.okhttp3.interceptors.DefaultHeadersInterceptor
+import com.roragok.namafia.api.okhttp3.interceptors.LoggingInterceptor
+import com.roragok.namafia.api.retrofit.NamafiaService
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -73,5 +73,5 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    internal fun provideNamfiaService(retrofit: Retrofit): NamfiaService = retrofit.create(NamfiaService::class.java)
+    internal fun provideNamfiaService(retrofit: Retrofit): NamafiaService = retrofit.create(NamafiaService::class.java)
 }

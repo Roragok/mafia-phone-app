@@ -6,9 +6,9 @@ package com.roragok.namafia.dagger.modules
 
 import android.content.Context
 import com.crashlytics.android.core.CrashlyticsCore
-import com.dds.roragok.namafia.events.EventFactory
 import com.roragok.namafia.BuildConfig
 import com.roragok.namafia.NamafiaApplication
+import com.roragok.namafia.events.EventFactory
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

@@ -37,7 +37,7 @@ buildscript {
                     material        : '1.0.0',
                     recyclerview    : '1.0.0'
             ],
-            crashlytics  : '2.9.3',
+            crashlytics  : '2.9.9',
             dagger2      : '2.21',
             jsr          : '3.0.2',
             junit        : '4.12',

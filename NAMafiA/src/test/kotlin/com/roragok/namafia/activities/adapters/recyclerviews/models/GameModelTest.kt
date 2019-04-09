@@ -4,8 +4,8 @@
 
 package com.roragok.namafia.activities.adapters.recyclerviews.models
 
-import com.dds.roragok.namafia.api.entities.Game
 import com.google.common.truth.Truth.assertThat
+import com.roragok.namafia.api.entities.Game
 import org.junit.Test
 
 class GameModelTest {

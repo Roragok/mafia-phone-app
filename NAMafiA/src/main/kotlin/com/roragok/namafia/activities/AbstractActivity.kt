@@ -10,11 +10,11 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
-import com.dds.roragok.namafia.events.Event
-import com.dds.roragok.namafia.events.EventFactory
 import com.roragok.namafia.R
 import com.roragok.namafia.activities.viewmodels.AbstractViewModel
 import com.roragok.namafia.dagger.factories.ViewModelFactory
+import com.roragok.namafia.events.Event
+import com.roragok.namafia.events.EventFactory
 import dagger.android.support.DaggerAppCompatActivity
 import timber.log.Timber
 import javax.inject.Inject
