@@ -27,10 +27,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias project.property('signing.alias')
-            keyPassword project.property('signing.password')
-            storeFile file(project.property('signing.keystore'))
-            storePassword project.property('signing.password')
+            keyAlias project.property('namafia.signing.alias')
+            keyPassword project.property('namafia.signing.password')
+            storeFile file(project.property('namafia.signing.keystore'))
+            storePassword project.property('namafia.signing.password')
         }
 
         debug {
