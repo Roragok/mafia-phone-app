@@ -54,4 +54,10 @@ class GamesActivity : AbstractActivity() {
 
         viewModel.onViewCreated()
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        binding.toolbar.toolbar_title.text = getString(R.string.games)
+    }
 }
