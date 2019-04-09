@@ -36,14 +36,10 @@ class DefaultHeadersInterceptor : Interceptor {
             Timber.d("%s already present", CONTENT_TYPE)
         }
 
-        request = request.newBuilder().header(APPLICATION_TYPE, APPLICATION_NAME).build()
-
         return chain.proceed(request)
     }
 
     companion object {
-        private const val APPLICATION_TYPE = "ApplicationType"
-        private const val APPLICATION_NAME = "CarScoreAndroid"
         private const val ACCEPT = "Accept"
         private const val APPLICATION_JSON = "application/json"
         private const val CONTENT_TYPE = "ContentType"

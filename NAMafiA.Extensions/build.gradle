@@ -92,6 +92,14 @@ dependencies {
     testImplementation "io.mockk:mockk:$libVersions.mockk"
 
     //
+    // rxJava 2
+    //
+
+    implementation "io.reactivex.rxjava2:rxjava:$libVersions.rxJava2"
+
+    testImplementation "io.reactivex.rxjava2:rxjava:$libVersions.rxJava2"
+
+    //
     // timber
     //
 

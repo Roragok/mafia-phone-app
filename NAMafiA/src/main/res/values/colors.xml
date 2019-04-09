@@ -6,4 +6,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    
+    <color name="controlPressed">#0e0e12</color>
+    <color name="textColorHighlight">#5a5960</color>
 </resources>

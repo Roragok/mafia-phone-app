@@ -1,0 +1,15 @@
+<!--
+  ~ Copyright 2019 Roragok. All Rights Reserved.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="18dp"
+    android:height="18dp"
+    android:viewportHeight="18.0"
+    android:viewportWidth="18.0">
+    
+    <path
+        android:fillAlpha="1"
+        android:fillColor="#FFFFFF"
+        android:pathData="M18,7.875l-13.691,0l6.289,-6.289l-1.597,-1.586l-9,9l9,9l1.586,-1.586l-6.278,-6.289l13.691,0z" />
+</vector>

@@ -20,7 +20,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 /**
- * Main application for CarScore
+ * Main application for NAMafiA
  *
  * @version 1.0.0
  * @see 1.0.0

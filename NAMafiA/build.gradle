@@ -60,7 +60,7 @@ android {
 
             // fabric properties
             ext.betaDistributionReleaseNotesFilePath = file('ReleaseNotes.txt')
-            ext.betaDistributionGroupAliases = 'carscore-android-testers' // TODO need a production distribution list at some point
+            ext.betaDistributionGroupAliases = '' // TODO need a production distribution list at some point
 
             buildConfigField 'boolean', 'FABRIC_ENABLED', 'true'
             buildConfigField 'String', 'API_SERVER', 'com.dds.roragok.namafia.api.Server.PRODUCTION'
@@ -81,7 +81,7 @@ android {
 
             // fabric properties
             ext.betaDistributionReleaseNotesFilePath = file('ReleaseNotes.txt')
-            ext.betaDistributionGroupAliases = 'carscore-android-testers'
+            ext.betaDistributionGroupAliases = ''
 
             buildConfigField 'boolean', 'FABRIC_ENABLED', 'true'
             buildConfigField 'String', 'API_SERVER', 'com.dds.roragok.namafia.api.Server.QA'
