@@ -1,0 +1,14 @@
+<!--
+  ~ Copyright 2019 Roragok. All Rights Reserved.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="18dp"
+    android:height="18dp"
+    android:viewportHeight="18"
+    android:viewportWidth="18">
+    <path
+        android:fillColor="#FFF"
+        android:fillType="evenOdd"
+        android:pathData="M1.813,0L0,1.813 7.187,9 0,16.187 1.813,18 9,10.813 16.187,18 18,16.187 10.813,9 18,1.813 16.187,0 9,7.187z" />
+</vector>

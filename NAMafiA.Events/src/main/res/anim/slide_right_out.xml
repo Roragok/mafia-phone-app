@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2019 Roragok. All Rights Reserved.
+  -->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <translate
+        android:duration="@integer/slide_duration"
+        android:fromXDelta="0"
+        android:toXDelta="100%p" />
+
+</set>

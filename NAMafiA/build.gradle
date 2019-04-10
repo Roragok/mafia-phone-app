@@ -1,0 +1,281 @@
+/*
+ * Copyright 2019 Roragok. All Rights Reserved.
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'io.fabric'
+apply from: 'app-version.gradle'
+
+android {
+    compileSdkVersion toolVersions.compileSdkVersion
+
+    defaultConfig {
+        applicationId 'com.roragok.namafia'
+        multiDexEnabled toolVersions.multidex
+
+        versionName project.ext.version.versionName
+        versionCode project.ext.version.versionCode
+
+        minSdkVersion toolVersions.minSdkVersion
+        targetSdkVersion toolVersions.targetSdkVersion
+
+        setProperty("archivesBaseName", "${project.name}-${versionName}_${versionCode}")
+    }
+
+    signingConfigs {
+        release {
+            keyAlias project.property('namafia.signing.alias')
+            keyPassword project.property('namafia.signing.password')
+            storeFile file(project.property('namafia.signing.keystore'))
+            storePassword project.property('namafia.signing.password')
+        }
+
+        debug {
+            keyAlias project.property('signing.debug.alias')
+            keyPassword project.property('signing.debug.password')
+            storeFile file(project.property('signing.debug.keystore'))
+            storePassword project.property('signing.debug.password')
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles fileTree(dir: 'config/proguard', include: ['*.pro']).asList().toArray()
+
+            signingConfig signingConfigs.release
+
+            // fabric properties
+            ext.betaDistributionReleaseNotesFilePath = file('ReleaseNotes.txt')
+            ext.betaDistributionGroupAliases = 'namafia' // TODO need a production distribution list at some point
+
+            buildConfigField 'boolean', 'FABRIC_ENABLED', 'true'
+            buildConfigField 'String', 'API_SERVER', 'com.roragok.namafia.api.Server.PRODUCTION'
+
+            matchingFallbacks["release"]
+        }
+
+        qa {
+            applicationIdSuffix '.qa'
+            debuggable true
+            minifyEnabled true
+            shrinkResources true
+
+            proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
+            proguardFiles fileTree(dir: 'config/proguard', include: ['*.pro']).asList().toArray()
+
+            signingConfig signingConfigs.release
+
+            // fabric properties
+            ext.betaDistributionReleaseNotesFilePath = file('ReleaseNotes.txt')
+            ext.betaDistributionGroupAliases = 'namafia'
+
+            buildConfigField 'boolean', 'FABRIC_ENABLED', 'true'
+            buildConfigField 'String', 'API_SERVER', 'com.roragok.namafia.api.Server.QA'
+
+            matchingFallbacks["release"]
+        }
+
+        // developers
+        debug {
+            applicationIdSuffix '.debug'
+            minifyEnabled false
+            debuggable true
+            testCoverageEnabled toolVersions.testCoverageEnabled
+
+            signingConfig signingConfigs.debug
+
+            // disable crashlytics, speeding up build process a bit
+            ext.enableCrashlytics = false
+
+            buildConfigField 'boolean', 'FABRIC_ENABLED', 'false'
+            buildConfigField 'String', 'API_SERVER', 'com.roragok.namafia.api.Server.DEV'
+
+            matchingFallbacks["debug"]
+        }
+    }
+
+    lintOptions {
+        xmlReport lintOpts.xmlReport
+        abortOnError lintOpts.abortOnError
+        disable lintOpts.disable
+    }
+
+    compileOptions {
+        sourceCompatibility compileVersions.sourceCompatibility
+        targetCompatibility compileVersions.targetCompatibility
+    }
+
+    packagingOptions {
+        packagingExcludes.forEach {
+            exclude it
+        }
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+repositories {
+    mavenCentral()
+    google()
+    maven { url "https://maven.fabric.io/public" }
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+
+    //
+    // androidx
+    //
+
+    implementation "androidx.core:core-ktx:$libVersions.androidx.ktx"
+    implementation "com.google.android.material:material:$libVersions.androidx.material"
+    implementation "androidx.appcompat:appcompat:$libVersions.androidx.appcompat"
+    implementation "androidx.recyclerview:recyclerview:$libVersions.androidx.recyclerview"
+    implementation "androidx.constraintlayout:constraintlayout:$libVersions.androidx.constraintLayout"
+    implementation "androidx.lifecycle:lifecycle-extensions:$libVersions.androidx.lifecycle" // this includes ViewModel
+
+    testImplementation "android.arch.core:core-testing:1.1.1"
+
+    //
+    // crashlytics
+    //
+
+    implementation "com.crashlytics.sdk.android:crashlytics:$libVersions.crashlytics@aar", {
+        transitive = true
+    }
+
+    //
+    // dagger 2
+    //
+
+    implementation "com.google.dagger:dagger:$libVersions.dagger2"
+    implementation "com.google.dagger:dagger-android:$libVersions.dagger2"
+    implementation "com.google.dagger:dagger-android-support:$libVersions.dagger2"
+
+    kapt "com.google.dagger:dagger-compiler:$libVersions.dagger2"
+    kapt "com.google.dagger:dagger-android-processor:$libVersions.dagger2"
+
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$libVersions.dagger2"
+    kaptAndroidTest "com.google.dagger:dagger-android-processor:$libVersions.dagger2"
+
+    //
+    // jsr
+    //
+
+    // included explicitly in order to resolve version conflicts
+    // - one of our dependencies uses this as a dependency
+    implementation "com.google.code.findbugs:jsr305:$libVersions.jsr"
+
+    androidTestImplementation "com.google.code.findbugs:jsr305:$libVersions.jsr"
+
+    //
+    // junit
+    //
+
+    testImplementation "junit:junit:$libVersions.junit"
+
+    //
+    // kotlin
+    //
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$toolVersions.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$toolVersions.kotlin"
+
+    //
+    // mockk
+    //
+
+    testImplementation "io.mockk:mockk:$libVersions.mockk"
+
+    androidTestImplementation "io.mockk:mockk-android:$libVersions.mockk"
+
+    //
+    // mockwebserver
+    //
+
+    testImplementation "com.squareup.okhttp3:mockwebserver:$libVersions.mockwebserver"
+
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$libVersions.mockwebserver"
+
+    //
+    // modules
+    //
+
+    implementation project(':NAMafiA.Api')
+    implementation project(':NAMafiA.Extensions')
+    implementation project(':NAMafiA.Events')
+
+    //
+    // moshi
+    //
+
+    implementation "com.squareup.moshi:moshi-kotlin:$libVersions.moshi"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$libVersions.moshi"
+
+    //
+    // okhttp3
+    //
+
+    implementation "com.squareup.okhttp3:okhttp:$libVersions.okhttp3"
+
+    //
+    // retrofit 2
+    //
+
+    implementation "com.squareup.retrofit2:retrofit:$libVersions.retrofit2"
+    implementation "com.squareup.retrofit2:converter-moshi:$libVersions.retrofit2"
+    implementation "com.squareup.retrofit2:converter-scalars:$libVersions.retrofit2"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$libVersions.retrofit2"
+
+    //
+    // RxAndroid
+    //
+
+    implementation "io.reactivex.rxjava2:rxandroid:$libVersions.rxAndroid"
+
+    testImplementation "io.reactivex.rxjava2:rxandroid:$libVersions.rxAndroid"
+
+    //
+    // rxJava 2
+    //
+
+    implementation "io.reactivex.rxjava2:rxjava:$libVersions.rxJava2"
+
+    testImplementation "io.reactivex.rxjava2:rxjava:$libVersions.rxJava2"
+
+    androidTestImplementation "io.reactivex.rxjava2:rxjava:$libVersions.rxJava2"
+
+    //
+    // timber
+    //
+
+    implementation "com.jakewharton.timber:timber:$libVersions.timber"
+
+    //
+    // truth
+    //
+
+    testImplementation "com.google.truth:truth:$libVersions.truth"
+
+    androidTestImplementation "com.google.truth:truth:$libVersions.truth"
+}
