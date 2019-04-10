@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.roragok.namafia.R
 import com.roragok.namafia.activities.adapters.recyclerviews.GamesAdapter
+import com.roragok.namafia.activities.adapters.recyclerviews.dividers.BasicItemDecoration
 import com.roragok.namafia.activities.viewmodels.GamesViewModel
 import com.roragok.namafia.databinding.ActivityGamesBinding
 import kotlinx.android.synthetic.main.toolbar_search.view.*
@@ -32,6 +33,7 @@ class GamesActivity : AbstractActivity() {
 
         binding.games.adapter = adapter
         binding.games.layoutManager = LinearLayoutManager(this)
+        binding.games.addItemDecoration(BasicItemDecoration(this))
 
         binding.toolbar.search.queryHint = getString(R.string.game_search_hint)
         binding.toolbar.search.setOnQueryTextListener(object : OnQueryTextListener {

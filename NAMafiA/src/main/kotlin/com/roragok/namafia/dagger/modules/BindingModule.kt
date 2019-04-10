@@ -4,6 +4,7 @@
 
 package com.roragok.namafia.dagger.modules
 
+import com.roragok.namafia.activities.GameDetailsActivity
 import com.roragok.namafia.activities.GamesActivity
 import com.roragok.namafia.dagger.scopes.ActivityScope
 import dagger.Module
@@ -14,4 +15,8 @@ abstract class BindingModule {
     @ActivityScope
     @ContributesAndroidInjector
     abstract fun gamesActivity(): GamesActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun gameDetailsActivity(): GameDetailsActivity
 }

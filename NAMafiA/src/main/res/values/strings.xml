@@ -5,11 +5,15 @@
 <resources>
     <string name="app_name">NAMafiA</string>
     <string name="back">Back</string>
+    <string name="day_label">Day:</string>
+    <string name="error_fetching_game_details">Error fetching game details</string>
     <string name="error_fetching_games_list">Error fetching games list</string>
     <string name="error_network_no_connection">No internet connection available.</string>
     <string name="error_network_timed_out">The request timed out. Please try again later.</string>
     <string name="error_network_unknown_error">An unknown network error occurred.</string>
     <string name="game_search_hint">Search title, player, or game ID</string>
     <string name="games">Games</string>
+    <string name="host">Host:</string>
+    <string name="players_alive">Players Alive:</string>
     <string name="search">Search</string>
 </resources>
