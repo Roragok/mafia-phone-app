@@ -20,7 +20,10 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:foreground="?selectableItemBackground"
-        android:padding="8dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
         android:text="@{model.title}"
         tools:text="@tools:sample/first_names" />
 </layout>

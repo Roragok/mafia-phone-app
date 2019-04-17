@@ -7,11 +7,8 @@ package com.roragok.namafia.activities
 import android.os.Bundle
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.roragok.namafia.R
-import com.roragok.namafia.activities.adapters.recyclerviews.GamesAdapter
-import com.roragok.namafia.activities.adapters.recyclerviews.dividers.BasicItemDecoration
+import com.roragok.namafia.activities.adapters.viewpagers.GamesPagerAdapter
 import com.roragok.namafia.activities.viewmodels.GamesViewModel
 import com.roragok.namafia.databinding.ActivityGamesBinding
 import kotlinx.android.synthetic.main.toolbar_search.view.*
@@ -20,7 +17,7 @@ import timber.log.Timber
 class GamesActivity : AbstractActivity() {
     private lateinit var viewModel: GamesViewModel
     private lateinit var binding: ActivityGamesBinding
-    private val adapter: GamesAdapter by lazy { GamesAdapter(viewModel) }
+    private val adapter: GamesPagerAdapter by lazy { GamesPagerAdapter(this, supportFragmentManager) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +27,6 @@ class GamesActivity : AbstractActivity() {
 
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar as Toolbar)
-
-        binding.games.adapter = adapter
-        binding.games.layoutManager = LinearLayoutManager(this)
-        binding.games.addItemDecoration(BasicItemDecoration(this))
 
         binding.toolbar.search.queryHint = getString(R.string.game_search_hint)
         binding.toolbar.search.setOnQueryTextListener(object : OnQueryTextListener {
@@ -48,11 +41,8 @@ class GamesActivity : AbstractActivity() {
             }
         })
 
-        viewModel.gamesObservable.observe(this, Observer {
-            Timber.d("games updated")
-
-            adapter.onItemsChanged(it)
-        })
+        binding.pager.adapter = adapter
+        binding.tabLayout.setupWithViewPager(binding.pager)
 
         viewModel.onViewCreated()
     }

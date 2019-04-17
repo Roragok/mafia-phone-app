@@ -3,6 +3,7 @@
   -->
 
 <resources>
+    <string name="active">Active</string>
     <string name="app_name">NAMafiA</string>
     <string name="back">Back</string>
     <string name="day_label">Day:</string>
@@ -14,6 +15,7 @@
     <string name="game_search_hint">Search title, player, or game ID</string>
     <string name="games">Games</string>
     <string name="host">Host:</string>
+    <string name="inactive">Inactive</string>
     <string name="players_alive">Players Alive:</string>
     <string name="search">Search</string>
 </resources>
