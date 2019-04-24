@@ -11,7 +11,7 @@ data class Game(
     @Json(name = "signed_players") val signedPlayers: List<String>? = null,
     @Json(name = "game_url") val url: String? = null,
     @Json(name = "host") val host: String? = null,
-    @Json(name = "status") val status: Boolean? = null,
+    @Json(name = "status") val expired: Boolean? = null,
     @Json(name = "game_start") val start: Long? = null,
     @Json(name = "title") val title: String? = null
 )

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2019 Roragok. All Rights Reserved.
+  -->
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        
+        <variable
+            name="model"
+            type="com.roragok.namafia.activities.adapters.recyclerviews.models.GameDetailsModel" />
+    </data>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+        
+        <TextView
+            android:id="@+id/day_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.title}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/cities" />
+        
+        <TextView
+            android:id="@+id/day_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/day_label"
+            app:layout_constraintStart_toStartOf="@id/day_title"
+            app:layout_constraintTop_toBottomOf="@id/day_title" />
+        
+        <TextView
+            android:id="@+id/day_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{`` + model.day}"
+            app:layout_constraintStart_toEndOf="@id/day_label"
+            app:layout_constraintTop_toBottomOf="@id/day_title"
+            tools:text="1" />
+        
+        <TextView
+            android:id="@+id/host_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/host"
+            app:layout_constraintStart_toStartOf="@id/day_title"
+            app:layout_constraintTop_toBottomOf="@id/day_label" />
+        
+        <TextView
+            android:id="@+id/host_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{model.host}"
+            app:layout_constraintBottom_toBottomOf="@id/host_label"
+            app:layout_constraintStart_toEndOf="@id/host_label"
+            tools:text="1" />
+        
+        <TextView
+            android:id="@+id/players_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/players_alive"
+            app:layout_constraintStart_toStartOf="@id/day_title"
+            app:layout_constraintTop_toBottomOf="@id/host_label" />
+        
+        <TextView
+            android:id="@+id/players_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{model.playersAliveAsString}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/players_label"
+            app:layout_constraintTop_toTopOf="@id/players_label"
+            tools:text="Peter, Paul, and Mary" />
+    
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -7,13 +7,14 @@ package com.roragok.namafia.activities.adapters.recyclerviews.models
 import com.roragok.namafia.api.entities.Game
 import timber.log.Timber
 
-class GameModel(game: Game) : Searchable {
+class GameModel(game: Game) : Searchable, Comparable<GameModel> {
     private val signedPlayers: List<String>? = game.signedPlayers
     val id: Int = game.id
-    val title: String? = game.title
+    val title: String = game.title ?: ""
+    val expired: Boolean = game.expired ?: true
 
     override fun matchesSearch(searchText: String, ignoreCase: Boolean): Boolean {
-        if (title != null && title.contains(searchText, ignoreCase)) {
+        if (title.contains(searchText, ignoreCase)) {
             Timber.v("matched on title: $title")
 
             return true
@@ -32,5 +33,15 @@ class GameModel(game: Game) : Searchable {
         }
 
         return false
+    }
+
+    override fun compareTo(other: GameModel): Int {
+        val compare = expired.compareTo(other.expired)
+
+        if (compare != 0) {
+            return compare
+        }
+
+        return title.compareTo(other.title, ignoreCase = true)
     }
 }
