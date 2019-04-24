@@ -7,6 +7,8 @@ package com.roragok.namafia.activities.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.roragok.namafia.R
+import com.roragok.namafia.activities.GameDetailsActivity
+import com.roragok.namafia.activities.GameDetailsActivity.GameDetailsInputData
 import com.roragok.namafia.activities.adapters.recyclerviews.models.GameModel
 import com.roragok.namafia.api.retrofit.NamafiaService
 import com.roragok.namafia.events.EventFactory
@@ -39,7 +41,7 @@ class GamesViewModel @Inject constructor(
                 Timber.d("fetched games: ${games.size}")
 
                 allGames.clear()
-                allGames += games.map { GameModel(it) }
+                allGames += games.map { GameModel(it) }.sorted()
 
                 this.games.value = allGames
             }, {
@@ -77,5 +79,7 @@ class GamesViewModel @Inject constructor(
 
     fun onGameClicked(game: GameModel) {
         Timber.d("game clicked: ${game.title} [${game.id}]")
+
+        events.value = eventFactory.newNavigationToActivityEvent(GameDetailsActivity::class, inputData = GameDetailsInputData(game.id, game.title))
     }
 }

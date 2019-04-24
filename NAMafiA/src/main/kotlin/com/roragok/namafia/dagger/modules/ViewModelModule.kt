@@ -5,6 +5,7 @@
 package com.roragok.namafia.dagger.modules
 
 import androidx.lifecycle.ViewModel
+import com.roragok.namafia.activities.viewmodels.GameDetailsViewModel
 import com.roragok.namafia.activities.viewmodels.GamesViewModel
 import com.roragok.namafia.dagger.factories.ViewModelKey
 import dagger.Binds
@@ -17,4 +18,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(GamesViewModel::class)
     abstract fun gamesViewModel(viewModel: GamesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(GameDetailsViewModel::class)
+    abstract fun gameDetailsViewModel(viewModel: GameDetailsViewModel): ViewModel
 }
